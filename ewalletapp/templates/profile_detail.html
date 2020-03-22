@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile_detail.css' %}"/>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-logo">
+                <img src="{% static 'css/logo.png' %}"/>
+                <a href="/home">Home</a>
+                <a href="/recharge">Recharge</a>
+                <a href="/send_money">Money Transfer</a>
+                <a href="/home">Transactions</a>
+        </div>
+        
+        <div class="header-btn">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="main-block">
+        <div class="left">
+        <div class="left-sidebar">
+            <img src="{{request.user.profile.profile_pic.url}}"/>
+            <h4>Hello, {{request.user.username}}<br></h4>
+            <div class="edit_pic" title="Edit Profile Pic" >
+                <a href="#popup5"><img src="{% static 'css/camera-solid.svg' %}"/></a>                
+            </div>
+        </div>
+        <div class="left-sidebar-2">
+            <img src="{% static 'css/wallet.svg' %}" width="90px" height="72px">
+            <h4>₹{{request.user.profile.amount}}<br></h4>
+            Availavle Balance            
+        </div>
+        </div>
+        <div class="right">
+
+        <div class="table-row">            
+            <h1>&nbsp;Personal Details</h1><h3><a href="#popup1"><img src="{% static 'css/edit-solid.svg' %}" height="15px"> EDIT</h3></a>
+            <div class="table-col-l">
+                <p>Name </p>
+                <p>Date of Birth </p>
+            </div>
+            <div class="table-col-r">
+                 <p>{{request.user.first_name}} {{request.user.last_name}}</p>
+                 <p>{{request.user.profile.birth_date | date:'d-m-Y'}} </p>
+            </div>
+        </div>
+        <div class="table-row">            
+            <h1>&nbsp;Email Address</h1><h3><a href="#popup2"><img src="{% static 'css/edit-solid.svg' %}" height="15px"> EDIT</h3></a>
+            <div class="table-col-l">
+                <p>Email <b>(Primary)</b> </p>
+            </div>
+            <div class="table-col-r">
+                 <p>{{request.user.email}}</p>
+            </div>
+        </div>
+        <div class="table-row">            
+            <h1>&nbsp;Phone</h1><h3><a href="#popup3"><img src="{% static 'css/edit-solid.svg' %}" height="15px"> EDIT</h3></a>
+            <div class="table-col-l">
+                <p>Mobile <b>(Primary)</b></p>
+            </div>
+            <div class="table-col-r">
+                 <p>{{request.user.profile.mobile_number}}</p>
+            </div>
+        </div>
+        <div class="table-row">            
+            <h1>&nbsp;Security</h1><h3><a href="#popup4"><img src="{% static 'css/edit-solid.svg' %}" height="15px"> EDIT</h3></a>
+            <div class="table-col-l">
+                <p>Password </p>
+            </div>
+            <div class="table-col-r">
+                 <p>•••••••••</p>
+            </div>
+        </div>
+        </div>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <div class="popup-head">
+                <h2>Personal Details</h2>
+                <a class="close" href="#">&times;</a>
+                </div>
+                <div class="content">
+                    <form action="/update_personal_detail/" method="POST">
+                    {% csrf_token %}
+                    <p>First Name</p>
+                    <input type="text" name="ufname" value="{{request.user.first_name}}"/>
+                    <p>Last Name</p>
+                    <input type="text" name="ulname" value="{{request.user.last_name}}"/>
+                    <p>Birth Date</p>
+                    <input type="date" name="udate" value="{{request.user.profile.birth_date | date:'d-m-Y'}}"/>
+                    <input type="submit" value="Save Changes"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="popup2" class="overlay">
+            <div class="popup">
+                <div class="popup-head">
+                <h2>Email Address</h2>
+                <a class="close" href="#">&times;</a>
+                </div>
+                <div class="content">
+                    <form action="/update_email/" method="POST">
+                    {% csrf_token %}
+                    <p>Email ID</p>
+                    <input type="text" name="umail" value="{{request.user.email}}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"/>
+                    <input type="submit" value="Save Changes"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="popup3" class="overlay">
+            <div class="popup">
+                <div class="popup-head">
+                <h2>Phone</h2>
+                <a class="close" href="#">&times;</a>
+                </div>
+                <div class="content">
+                    <form action="/update_mobile/" method="POST">
+                    {% csrf_token %}
+                    <p>Mobile</p>
+                    <input type="text" name="umobile" value="{{request.user.profile.mobile_number}}" pattern="[6789]{1}[0-9]{9}" title="Enter your 10 digit number"/>
+                    <input type="submit" value="Save Changes"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="popup4" class="overlay">
+            <div class="popup">
+                <div class="popup-head">
+                <h2>Password</h2>
+                <a class="close" href="#">&times;</a>
+                </div>
+                <div class="content">
+                    <form action="/update_password/" method="POST">
+                    {% csrf_token %}
+                    <p>Password</p>
+                    <input type="password" name="upwd" value="{{request.user.password}}"/>
+                    <input type="submit" value="Save Changes"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="popup5" class="overlay">
+            <div class="popup">
+                <div class="popup-head">
+                <h2>Profile Pic</h2>
+                <a class="close" href="#">&times;</a>
+                </div>
+                <div class="content">
+                    <img src="{{request.user.profile.profile_pic.url}}"/>
+                    <form action="/user_profile_pic/" method="POST" enctype = "multipart/form-data">
+                    {% csrf_token %}
+                    <p>New Profile Pic</p>
+                
+                    <input type="file" name="picture" placeholder="Picture"/>
+                    <input type="submit" value="Save Changes"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="main-footer">
+		<h5>coyright &copy 2019,MS-creation</h5>
+	</footer>
+    
+</body>
+</html>

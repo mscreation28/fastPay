@@ -1,0 +1,200 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    opacity: 0.8;
+    font-family: "Rubik", sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family:  sans-serif;
+}
+
+.header {
+    background-color:white;
+    overflow: hidden;
+    /* background-color: #f1f1f1; */
+    padding: 0px 0px;
+    color: 	green;
+    
+    box-shadow: 0.2px 0.2px 2px lightgray;
+    font-weight: bold;
+    height: 75px;
+}
+.header-logo {
+    float: left;
+    font-size: 32px;
+    /* font-style: italic; */
+    padding: 20px 60px;
+    padding-left: 120px;
+    /* padding-right: 50px; */
+}
+.header-logo a{
+    /* float: left; */
+    color:	black;
+    padding-left: 20px;
+    font-size: 17px;
+    font-style: bold;
+    text-decoration: none;
+    lighting-color: aquamarine;
+}
+.header-logo a:hover{
+    color: #6b0367;
+}
+.header-logo img{
+    width: 200px;
+    height: 60px;
+    margin-top: -10px;
+    float: left;
+}
+.header-btn a{
+    float: right;
+    margin: 20px 100px;
+    font-size:17px;
+    
+    color:#6b0367;
+    border: 1px;
+    border-color: 	#6b0367;
+    border-style: solid;
+    border-radius: 3px;
+    padding: 8px 22px;
+    text-decoration: none;
+}
+.main-block{
+    height: 82vh;
+    text-align: center;
+}
+.main-block h1{
+    font-weight: lighter;
+    text-align: left;
+    font-size: 25px;
+    margin-left: -10px;
+    padding: 10px 20px;
+}
+.top-nav{
+	height: 60px;
+	/* text-align: center; */
+    vertical-align: middle;
+    width: 100%;
+	color: white;
+    font-size: 17px;
+    padding: 20px 230px;
+	background-color: #6b0367;
+	margin-bottom: 30px;
+	box-shadow: 0px 0px 3px lightgray; 
+}
+.top-nav p{
+    width: 20%;
+    float: left;
+    margin-left: 320px;
+
+}
+.top-nav h3{
+    width: 20%;
+    float: right;
+    margin-right: 320px;
+    /* margin: 10px 50px; */
+}
+.top-row{
+    margin-top: 50px;
+    height: 25%;
+    float: top;
+}
+.bottom-row{
+    height: 25%;
+    float: bottom;
+}
+.recharge_money{
+    width: 300px;
+    height: 200px;
+    float: left;
+    padding: 10px 30px;
+    margin-left: 440px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 1px gray;
+}
+.money_transfer{
+    width: 300px;
+    height: 200px;
+    float: right;
+    padding: 10px 40px;
+    padding-left: 20px;
+    margin-right: 440px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 1px gray;
+}
+.profile_detail{
+    width: 300px;
+    height: 200px;
+    margin-left: 260px;
+    margin-top: 40px;
+    float: left;
+    padding: 10px 30px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 1px gray;
+}
+.transaction{
+    width: 300px;
+    height: 200px;
+    margin-left: 60px;
+    margin-top: 40px;
+    float: left;
+    padding: 10px 30px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 1px gray;
+}
+.aboutus{
+    width: 300px;
+    height: 200px;
+    margin-left: 60px;
+    margin-top: 40px;
+    float: left;
+    padding: 10px 30px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 1px gray;
+}
+.button
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 75%;
+    background: white;
+    color: #6b0367;
+    margin-top: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 5px;
+    border : 1px solid #6b0367
+}
+.button:hover
+{
+    /* cursor: pointer; */
+    background-color: #6b0367;
+    color: white;
+    box-shadow: 0 0 3px lightgray;
+}
+#main-footer h5{
+    background-color:white;
+    box-shadow: 0px 0px 3px lightgray; 
+	color:black;
+	text-align: center;
+    width: 100%;
+    height: 50px;
+	margin:auto;
+	padding-top: 20px;
+
+}
+
+

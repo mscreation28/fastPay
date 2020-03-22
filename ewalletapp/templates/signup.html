@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css'%}"/>
+</head>
+<body>
+    <div class="left-bar">
+        <div class="layer1">
+            <img src="{%static 'css/fastpay.png'%}" width="75%" height="200px">
+            <h1>Get Verified!</h1>
+            <p>Every day, FastPay makes thousands of customers happy.</p>
+        </div>
+    </div>
+    <div class="signup-box">
+        <h1>Sign Up</h1>
+        <form method="POST"> 
+            
+            {% csrf_token %}
+            <p>
+                {{ form|crispy }}
+            </p>
+            <!-- <p>Username</p>
+            <input type="text" name="username" onfocus="this.placeholder=''" placeholder="Type your username"/>
+            <p>Email</p>
+            <input type="text" name="email" onfocus="this.placeholder=''" placeholder="Type your email"/>
+            <p>Password</p>
+            <input type="password" name="password" onfocus="this.placeholder=''" placeholder="Type your password"/>
+            <p>Retype Password</p>
+            <input type="password" name="repassword" onfocus="this.placeholder=''" placeholder="Retype your password"/> -->
+            <input type="submit" name="submit" value="SIGN UP"/>   
+            <div class="login">
+                Already have account? <a href="/login">Login</a></div>
+        </form>
+    </div>
+</body>
+</html>

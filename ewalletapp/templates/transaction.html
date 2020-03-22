@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/transaction.css' %}"/>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-logo">
+                <img src="{% static 'css/logo.png' %}"/>
+                <a href="/home">Home</a>
+                <a href="/recharge">Recharge</a>
+                <a href="/send_money">Money Transfer</a>
+                <a href="/profile_detail">Profile Detail</a>
+                
+        </div>
+        
+        <div class="header-btn">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="main-block">
+        
+        <div class="left-sidebar">
+            <img src="{{request.user.profile.profile_pic.url}}"/>
+            <h4>Hello, {{request.user.username}}<br></h4>
+            <div class="edit_pic" title="Edit Profile Pic" >
+                <a href="#popup5"><img src="{% static 'css/camera-solid.svg' %}"/></a>                
+            </div>
+        </div>
+        <div class="left-sidebar-2">
+            <img src="{% static 'css/wallet.svg' %}" width="90px" height="72px">
+            <h4>₹{{request.user.profile.amount}}<br></h4>
+            Availavle Balance            
+        </div>
+        <div class="left-sidebar-3">
+            <h3>Debit</h3>
+            <h4>₹{{request.user.profile.debit}}<br></h4>
+            <h3>Credit</h3>
+            <h4>₹{{request.user.profile.credit}}<br></h4>
+        </div>
+        <div class="title">
+            &nbsp;Transactions
+        </div>
+        <div class="main-content">
+            
+                <div class="table-head">
+                    <div class="table_date">Date</div>
+                    <div class="table_desc">Description</div>
+                    <div class="table_amount1">Amount</div>
+                </div>
+                
+                {% for trans in page_obj %}
+                <div class="table-row">
+                    <br>
+                    <div class="table_date">
+                    {{trans.time | date:"d"}}<br>
+                    <div class="table_date1">{{trans.time | date:"M"}}</div>
+                    </div>
+                    <div class="table_desc">
+                        {{trans.t_type}}<br>
+                        <div class="table_desc1">
+                        {% if trans.t_type == "Recharge" %}
+                            Recharge done to {{trans.receiver}}
+                        {% else %}
+                            {% if request.user.profile.user == trans.user %}
+                                Money Transfered to {{trans.receiver}}
+                            {% else %}
+                                Money Transfered From {{trans.user}}
+                            {% endif %}
+                        {% endif %}
+                        </div>
+                    </div>
+                    <div class="table_amount">
+                    {% if request.user.profile.user == trans.user %}
+                        - {{trans.amount}} ₹
+                    {% else %}
+                        + {{trans.amount}} ₹
+                    {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            
+                
+                <div class="pagination">
+                    <div class="page_btn">
+                        {% if page_obj.has_previous %}
+                        
+                            <a href="?page=1">&laquo; First</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        
+                        {% endif %}
+                        
+                        {% if page_obj.paginator.num_pages > 1 %}
+                            {% for num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                    <a href="?page={{ num }}">{{ num }}</a>
+                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                    <a href="?page={{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}    
+
+                        {% if page_obj.has_next %}
+                        
+                            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                        
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+              
+    </div>
+    <div id="popup5" class="overlay">
+        <div class="popup">
+            <div class="popup-head">
+            <h2>Profile Pic</h2>
+            <a class="close" href="#">&times;</a>
+            </div>
+            <div class="content">
+                <img src="{{request.user.profile.profile_pic.url}}"/>
+                <form action="/user_profile_pic/" method="POST" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <p>New Profile Pic</p>
+            
+                <input type="file" name="picture" placeholder="Picture"/>
+                <input type="submit" value="Save Changes"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer id="main-footer">
+		<h5>coyright &copy 2019,MS-creation</h5>
+	</footer>
+    
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-logo">
+                <img src="{% static 'css/logo.png' %}"/>
+                <!-- <a href="/recharge">Recharge</a>
+                <a href="/send_money">Money Transfer</a>
+                <a href="/profile_detail">Profile Detail</a>
+                <a href="/transaction">Transaction</a> -->
+        </div>
+        <div class="header-btn">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="main-block">
+        <div class="top-nav">
+			<p>Available Balance </p> <h3>₹{{request.user.profile.amount}}</h3>
+        </div>
+        <div class="top-row">
+            <div class="recharge_money">
+               <h1>Recharge</h1> 
+               Recharge your mobile anytime anywhere.
+               <a href="/recharge"><button class="button">Recharge</button></a>
+            </div>
+            <div class="money_transfer">
+                <h1>Send Money</h1>
+                Send instant money to friends & family anytime.
+                <br>
+               <a href="/send_money"><button class="button">Send Money</button></a>
+            </div>
+        </div>
+        <div class="bottom-row">
+            <div class="profile_detail">
+                <h1>Profile</h1>
+                View and Edit your profile details from here.
+               <a href="/profile_detail"><button class="button">Profile Details</button></a>
+            </div>
+            <div class="transaction">
+                <h1>Transaction</h1>
+                View Your transaction history from here.
+               <a href="/transaction"><button class="button">Transaction</button></a>
+            </div>
+            <div class="aboutus">
+                <h1>About Us</h1>
+                View Personal and Contact details about us.
+               <a href="/aboutus"><button class="button">About Us</button></a>
+            </div>
+        </div>
+    </div> 
+    <footer id="main-footer">
+		<h5>coyright &copy 2019,MS-creation</h5>
+	</footer>
+</body>

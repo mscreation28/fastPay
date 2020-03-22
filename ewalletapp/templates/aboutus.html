@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aboutus.css' %}"/>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-logo">
+                <img src="{% static 'css/logo.png' %}"/>
+                <a href="/home">Home</a>
+                <a href="/profile_detail">Profile Detail</a>
+                <a href="/transaction">Transaction</a>
+        </div>
+        <div class="header-btn">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="main-block">
+
+        <div class="side-1">
+            <img src="{% static 'css/login_back.jpg' %}"/>
+            <h3>Shyam Makwana<br></h3>
+            <h6>Phone No. : </h6><h4>+916354088874</h4>
+            <h6>Email ID : </h6><h4>makwanashyam28@gmail.com</h4>
+            <h6>Collage : </h6><h4>Dharmshi Desai, University</h4>
+            <a href="#popup"><button class="button">Email Us!</button></a>
+        </div>
+        <div class="side-2">
+            <img src="{% static 'css/profile_pic.jpg' %}"/>
+            <h3>Shyam Makwana<br></h3>
+            <h6>Phone No. : </h6><h4>+916354088874</h4>
+            <h6>Email ID : </h6><h4>makwanashyam28@gmail.com</h4>
+            <h6>Collage : </h6><h4>Dharmshi Desai, University</h4>
+            <a href="#popup"><button class="button">Email Us!</button></a>
+        </div>
+        <div class="side-3">
+            <img src="{% static 'css/profile_pic.jpg' %}"/>
+            <h3>Shyam Makwana<br></h3>
+            <h6>Phone No. : </h6><h4>+916354088874</h4>
+            <h6>Email Id : </h6><h4>makwanashyam28@gmail.com</h4>
+            <h6>Collage : </h6><h4>Dharmshi Desai, University</h4>
+            <a href="#popup"><button class="button">Email Us!</button></a>
+        </div>
+        <div id="popup" class="overlay">
+            <div class="popup">
+                <div class="popup-head">
+                <h2>Contact Us</h2>
+                <a class="close" href="#">&times;</a>
+                </div>
+                <div class="content">
+                    <form action="/send_mail_contact/" method="POST">
+                    {% csrf_token %}
+                    <p>Subject</p>
+                    <input type="text" name="sub" >
+                    <p>Message</p>
+                    <textarea cols="52" rows="10" name="msg">Enter Your Message Here</textarea>
+                    <input type="submit" value="Send Message"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div> 
+    <footer id="main-footer">
+		<h5>coyright &copy 2019,MS-creation</h5>
+	</footer>
+</body>

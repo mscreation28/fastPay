@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/invalidlogin.css'%}"/>
+    <title>Document</title>
+</head>
+<body>
+    <div class="left-bar">
+        <div class="layer1">
+            <img src="{%static 'css/fastpay.png'%}" width="75%" height="200px">
+            <h1>Get Verified!</h1>
+            <p>Every day, FastPay makes thousands of customers happy.</p>
+        </div>
+    </div>
+    <div class="login-box">
+        <h1>OTP</h1>
+        <form action='/otpvalidate/' method="POST">
+            {% csrf_token %} 
+            <p>Enter OTP</p><input type="text" name="otp" placeholder="Enter Your OTP here">
+            <br>
+            <input type="submit" value="SUBMIT OTP"/>
+            <div class="message">
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="sign-up">
+                Didn't get E-mail?  
+            <a href="/email_sent">Resend OTP</a></div>
+        </form>
+    </div>
+</body>
+</html>

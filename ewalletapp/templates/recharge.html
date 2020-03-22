@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Recharge</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/recharge.css' %}"/>
+</head>
+
+<body>
+	
+	<div class="header">
+        <div class="header-logo">
+                <img src="{% static 'css/logo.png' %}"/>
+				<a href="/home">Home</a>
+				<a href="/transaction">Transaction</a>
+				<a href="/profile_detail">Profile</a>
+				<!-- <a href="/send_money">Money Transfer</a> -->
+                <!-- <a href="/send_money">Money Transfer</a> -->
+        </div>
+        <div class="header-btn">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+	
+
+  	<div class="main-block">
+		<div class="top-nav">
+			<a href="/recharge">Recharge</a>
+			<a href="/send_money">Send Money</a>
+		</div>
+		Mobile Recharge
+        <p>Recharge your mobile on anytime, anywhere in the world.</p>
+		<div class="login-box">
+			{% if messages %}
+                <div class="message">
+                {% for message in messages %}
+                    {% if message.level == 25 %}
+                        <div class="success">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                    {% if message.level == 30 %}
+                        <div class="warning">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endif %}
+			<form action="/money_transfer/" method="POST">
+				{% csrf_token %} 
+				Recharge Details
+				<p>Mobile Number</p>
+				<input type="text" name="mb_number" placeholder="Enter your Mobile Number" pattern="[6789]{1}[0-9]{9}" title="Enter your 10 digit number"/>
+				<p>Select you operator</p>
+					<!-- Add an <input> tag -->
+					<select name="operator">
+					<option>Jio</option>
+					<option>Vodafone</option>
+					</select>
+				<p>Select you Circle</p>
+				<select name="circle">
+					<option>Gujarat</option>
+					<option>Rajasthan</option>
+					<option>Maharashtra</option>
+				</select>
+				<p>Select your plan</p>
+				<!-- Add a <textarea> tag -->
+				<select name="plan">
+					<option>300 ₹</option>
+					<option>400 ₹</option>
+				</select>
+				<br>
+				<div class="Proceed">
+					<input type="submit" value="Proceed" />
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+	<footer id="main-footer">
+		<h5>coyright &copy 2019,MS-creation</h5>
+	</footer>
+	
+</body>
+	
+</html>

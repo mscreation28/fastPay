@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Recharge</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/recharge.css' %}"/>
+</head>
+
+<body>
+	<div class="header">
+        <div class="header-logo">
+                <img src="{% static 'css/logo.png' %}"/>
+				<a href="/home">Home</a>
+				<a href="/transaction">Transaction</a>
+				<a href="/profile_detail">Profile</a>
+        </div>
+        <div class="header-btn">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+  	<div class="main-block">
+		<div class="top-nav">
+			<a href="/recharge">Recharge</a>
+			<a href="/send_money">Send Money</a>
+		</div>
+		Transfer Money
+		<p>Send your money on anytime, anywhere in the world.</p>
+    	<div class="login-box">
+			{% if messages %}
+                <div class="message">
+                {% for message in messages %}
+                    {% if message.level == 25 %}
+                        <div class="success">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                    {% if message.level == 30 %}
+                        <div class="warning">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endif %}
+        <form action="/money_transfer_to_user/" method="POST">
+			{% csrf_token %} 
+			Transfer Details
+            <p>Recipient :</p>
+              	<input type="text" name="rname" placeholder="Enter Reciever Username" />	
+			
+			<p>Amount :</p>
+				<input type="text" name="amount" placeholder="Enter Amount" />
+            <br />
+            <div class="Proceed">
+                <input type="submit" value="Proceed" /></div>
+		</form>
+
+
+    </div>
+  	</div>
+	<footer id="main-footer">
+		<h5>coyright &copy 2019,MS-creation</h5>
+	</footer>
+</body>
+
+</html>
