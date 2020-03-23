@@ -75,7 +75,7 @@ def email_sent(request):
     email_from = settings.EMAIL_HOST_USER
     otp = random.randint(100000,999999)
     request.session['otp']=otp
-    print(otp)
+    # print(otp)
     resp_list=[]
     resp_list.append(request.session['email_add'])
     send_mail( subject, str(otp), email_from, resp_list )
@@ -83,12 +83,12 @@ def email_sent(request):
 
 def otpvalidate(request):
     otp1=request.session['otp']
-    print(otp1)
+    # print(otp1)
     otp2=request.POST['otp']
-    print(otp2)
+    # print(otp2)
     
     if(str(otp1)==otp2):
-        print("yes")
+        # print("yes")
         user=User.objects.create_user(username=request.session['username'],email=request.session['email_add'],first_name=request.session['fname'],last_name=request.session['lname'],password=request.session['pwd'])
 
         user.refresh_from_db() 
@@ -119,7 +119,7 @@ def recharge(request):
     return render(request,'recharge.html')
 
 def money_transfer(request):
-    print(request.session['username'])
+    # print(request.session['username'])
     username=request.session['username']
     u = User.objects.get(username = username)
     # print(u.profile.amount)
@@ -158,7 +158,7 @@ def send_money(request):
     return render(request,'send_money.html')
 
 def money_transfer_to_user(request):
-    print(request.session['username'])
+    # print(request.session['username'])
     username=request.session['username']
     u = User.objects.get(username = username)
     r = User.objects.get(username = request.POST['rname'])
