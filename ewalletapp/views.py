@@ -42,7 +42,7 @@ def signup(request):
         
         if form.is_valid():     
             request.session['email_add']=form.cleaned_data.get('email')
-            request.user.username=form.cleaned_data.get('username')
+            request.session['username']=form.cleaned_data.get('username')
             request.session['fname']=form.cleaned_data.get('first_name')
             request.session['lname']=form.cleaned_data.get('last_name')
             request.session['pwd']=form.cleaned_data.get('password1')
@@ -55,7 +55,7 @@ def signup(request):
 
 @login_required(login_url='/login')
 def home(request):
-    # request.user.username=request.user.username
+    request.session['username']=request.user.username
     u = User.objects.get(username = request.user.username)
     
     ans= Transaction.objects.filter(receiver=request.user.username) | Transaction.objects.filter(user=u)
@@ -89,7 +89,7 @@ def otpvalidate(request):
     
     if(str(otp1)==otp2):
         # print("yes")
-        user=User.objects.create_user(username=request.user.username,email=request.session['email_add'],first_name=request.session['fname'],last_name=request.session['lname'],password=request.session['pwd'])
+        user=User.objects.create_user(username=request.session['username'],email=request.session['email_add'],first_name=request.session['fname'],last_name=request.session['lname'],password=request.session['pwd'])
 
         user.refresh_from_db() 
         user.profile.amount=1000
