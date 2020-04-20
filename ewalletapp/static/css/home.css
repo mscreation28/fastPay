@@ -111,7 +111,7 @@ body{
     height: 200px;
     float: left;
     padding: 10px 30px;
-    margin-left: 440px;
+    margin-left: 28%;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 0 1px gray;
@@ -119,10 +119,10 @@ body{
 .money_transfer{
     width: 300px;
     height: 200px;
-    float: right;
+    float: left;
     padding: 10px 40px;
     padding-left: 20px;
-    margin-right: 440px;
+    margin-left: 50px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 0 1px gray;
@@ -130,7 +130,7 @@ body{
 .profile_detail{
     width: 300px;
     height: 200px;
-    margin-left: 260px;
+    margin-left: 17%;
     margin-top: 40px;
     float: left;
     padding: 10px 30px;

@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="main-block">
-        
+        <div class="left">
         <div class="left-sidebar">
             <img src="{{request.user.profile.profile_pic.url}}"/>
             <h4>Hello, {{request.user.username}}<br></h4>
@@ -38,11 +38,14 @@
             Availavle Balance            
         </div>
         <div class="left-sidebar-3">
-            <h3>Debit</h3>
+            Debit
             <h4>₹{{request.user.profile.debit}}<br></h4>
-            <h3>Credit</h3>
+            Credit
             <h4>₹{{request.user.profile.credit}}<br></h4>
         </div>
+        </div>
+
+        <div class="right">
         <div class="title">
             &nbsp;Transactions
         </div>
@@ -114,7 +117,7 @@
                     </div>
                 </div>
             </div>
-              
+        </div>
     </div>
     <div id="popup5" class="overlay">
         <div class="popup">
@@ -136,7 +139,7 @@
     </div>
 
     <footer id="main-footer">
-		<h5>coyright &copy 2019,MS-creation</h5>
+		<h5>coyright &copy 2020,FastPay</h5>
 	</footer>
     
 </body>
