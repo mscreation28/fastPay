@@ -42,7 +42,7 @@ def signup(request):
         
         if form.is_valid():     
             request.session['email_add']=form.cleaned_data.get('email')
-            request.session['username']=form.cleaned_data.get('username')
+            request.user.username=form.cleaned_data.get('username')
             request.session['fname']=form.cleaned_data.get('first_name')
             request.session['lname']=form.cleaned_data.get('last_name')
             request.session['pwd']=form.cleaned_data.get('password1')
@@ -55,10 +55,10 @@ def signup(request):
 
 @login_required(login_url='/login')
 def home(request):
-    request.session['username']=request.user.username
-    u = User.objects.get(username = request.session['username'])
+    # request.user.username=request.user.username
+    u = User.objects.get(username = request.user.username)
     
-    ans= Transaction.objects.filter(receiver=request.session['username']) | Transaction.objects.filter(user=u)
+    ans= Transaction.objects.filter(receiver=request.user.username) | Transaction.objects.filter(user=u)
     
     paginator = Paginator(ans, 8)
     page_number = request.GET.get('page')
@@ -89,7 +89,7 @@ def otpvalidate(request):
     
     if(str(otp1)==otp2):
         # print("yes")
-        user=User.objects.create_user(username=request.session['username'],email=request.session['email_add'],first_name=request.session['fname'],last_name=request.session['lname'],password=request.session['pwd'])
+        user=User.objects.create_user(username=request.user.username,email=request.session['email_add'],first_name=request.session['fname'],last_name=request.session['lname'],password=request.session['pwd'])
 
         user.refresh_from_db() 
         user.profile.amount=1000
@@ -105,7 +105,7 @@ def otpvalidate(request):
         trans.user=r
         trans.amount=1000
         trans.t_type="Money Transfer"
-        trans.receiver=request.session['username']
+        trans.receiver=request.user.username
         trans.save()
 
         messages.add_message(request,messages.SUCCESS, 'Profile details updated.')
@@ -119,8 +119,8 @@ def recharge(request):
     return render(request,'recharge.html')
 
 def money_transfer(request):
-    # print(request.session['username'])
-    username=request.session['username']
+    # print(request.user.username)
+    username=request.user.username
     u = User.objects.get(username = username)
     # print(u.profile.amount)
     amount=int(request.POST['plan'])
@@ -158,8 +158,8 @@ def send_money(request):
     return render(request,'send_money.html')
 
 def money_transfer_to_user(request):
-    # print(request.session['username'])
-    username=request.session['username']
+    # print(request.user.username)
+    username=request.user.username
     u = User.objects.get(username = username)
     r = User.objects.get(username = request.POST['rname'])
     amount=int(request.POST['amount'])
@@ -187,14 +187,14 @@ def profile_detail(request):
     return render(request,'profile_detail.html')
 
 def update_email(request):
-    username=request.session['username']
+    username=request.user.username
     u = User.objects.get(username = username)
     u.email=request.POST['umail']
     u.save()
     return render(request,'profile_detail.html')
     
 def update_personal_detail(request):
-    username=request.session['username']
+    username=request.user.username
     u = User.objects.get(username = username)
     u.first_name=request.POST['ufname']
     u.last_name=request.POST['ulname']
@@ -204,16 +204,16 @@ def update_personal_detail(request):
     return render(request,'profile_detail.html')
 
 def update_mobile(request):
-    username=request.session['username']
+    username=request.user.username
     u = User.objects.get(username = username)
     u.profile.mobile_number=request.POST['umobile']
     u.profile.save()
     return render(request,'profile_detail.html')
 
 def update_password(request):
-    username=request.session['username']
+    username=request.user.username
     u = User.objects.get(username = username)
-    username = request.session['username']
+    username = request.user.username
     password = request.POST['upwd']
     u.set_password(request.POST['upwd'])
     u.save()
@@ -226,7 +226,7 @@ def update_password(request):
     return render(request,'profile_detail.html')
 
 def user_profile_pic(request):
-    username=request.session['username']
+    username=request.user.username
     u = User.objects.get(username = username)
 
     if request.method == "POST":
