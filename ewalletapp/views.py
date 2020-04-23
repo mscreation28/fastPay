@@ -71,20 +71,25 @@ def logout_request(request):
     return redirect('/login')
 
 def email_sent(request):
-    subject = 'Thank you for registering to our site'
+    subject = 'OTP Verification'
     email_from = settings.EMAIL_HOST_USER
     otp = random.randint(100000,999999)
     request.session['otp']=otp
+    msg="Thanks for registering on our website\n\n"
+    msg+="Your OTP is : "
+    msg+=str(otp)    
     # print(otp)
     resp_list=[]
     resp_list.append(request.session['email_add'])
-    send_mail( subject, str(otp), email_from, resp_list )
+    send_mail( subject, msg, email_from, resp_list )
+    messages.add_message(request,messages.SUCCESS,'OTP Successfuly sent to your E-mail')
     return render(request,'email_sent.html')
 
 def otpvalidate(request):
     otp1=request.session['otp']
     # print(otp1)
-    otp2=request.POST['otp']
+    otp2=request.POST['otp'
+    ]
     # print(otp2)
     
     if(str(otp1)==otp2):

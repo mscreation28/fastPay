@@ -117,6 +117,11 @@ body{
     font-weight: bold;
     text-align: center;
     color: red;
+}.success{
+    color: green
+}
+.warning{
+    color: red;
 }
 .sign-up{
     margin-top: 30px;

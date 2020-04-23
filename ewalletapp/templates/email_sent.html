@@ -19,16 +19,26 @@
         <h1>OTP</h1>
         <form action='/otpvalidate/' method="POST">
             {% csrf_token %} 
+             {% if messages %}
+                <div class="message">
+                {% for message in messages %}
+                    {% if message.level == 25 %}
+                        <div class="success">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                    {% if message.level == 30 %}
+                        <div class="warning">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endif %}
             <p>Enter OTP</p><input type="text" name="otp" placeholder="Enter Your OTP here">
             <br>
             <input type="submit" value="SUBMIT OTP"/>
-            <div class="message">
-                {% if messages %}
-                    {% for message in messages %}
-                        {{ message }}
-                    {% endfor %}
-                {% endif %}
-            </div>
+           
             <div class="sign-up">
                 Didn't get E-mail?  
             <a href="/email_sent">Resend OTP</a></div>
