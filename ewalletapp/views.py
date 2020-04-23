@@ -88,8 +88,7 @@ def email_sent(request):
 def otpvalidate(request):
     otp1=request.session['otp']
     # print(otp1)
-    otp2=request.POST['otp'
-    ]
+    otp2=request.POST['otp']
     # print(otp2)
     
     if(str(otp1)==otp2):
