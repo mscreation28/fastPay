@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load crispy_forms_tags %}
 {% load static %}
 <html lang="en">
 <head>
@@ -22,7 +21,7 @@
             
             {% csrf_token %}
             <p>
-                {{ form|crispy }}
+                {{ form }}
             </p>
             <!-- <p>Username</p>
             <input type="text" name="username" onfocus="this.placeholder=''" placeholder="Type your username"/>
